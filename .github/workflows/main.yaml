@@ -27,13 +27,21 @@ jobs:
           key: >-
             ${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.pandas
             }}-${{ matrix.numpy }}-pip-${{ hashFiles('**/setup.py') }}
+      - run: python -m pip install --upgrade pip
+      - run: pip install pandas${{ matrix.pandas }}
+        if: ${{ matrix.pandas }}
+      - run: pip install numpy${{ matrix.numpy }}
+        if: ${{ matrix.numpy }}
       - name: Install dependencies
-        env:
-          NODE_OPTIONS: --openssl-legacy-provider
-        run: |
-          python -m pip install --upgrade pip
-          pip install pandas${{ matrix.pandas }} numpy${{ matrix.numpy }}
-          pip install -e .[test]
+        env: { NODE_OPTIONS: --openssl-legacy-provider }
+        run: pip install -e '.[test]'
+      - name: On 3.12 install unreleased python-dateutil to avoid a warning
+        if: ${{ matrix.numpy == '3.12' }}
+        run: pip install git+https://github.com/dateutil/dateutil.git
+        # see
+        # https://github.com/dateutil/dateutil/pull/1285
+        # https://github.com/dateutil/dateutil/issues/1314
+        # https://github.com/dateutil/dateutil/pull/1130
       - name: Lint with flake8
         run: |
           flake8

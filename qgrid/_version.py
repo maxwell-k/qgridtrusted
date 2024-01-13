@@ -10,3 +10,6 @@ __version__ = "%s.%s.%s%s" % (
     if version_info[3] == "final"
     else _specifier_[version_info[3]] + str(version_info[4]),
 )
+
+if __name__ == "__main__":
+    print(__version__)

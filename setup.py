@@ -137,8 +137,8 @@ data_files = package_files('qgrid/static')
 def extras_require():
     return {
         "test": [
-            "pytest>=2.8.5",
-            "flake8>=3.6.0"
+            "pytest",
+            "flake8"
         ],
     }
 

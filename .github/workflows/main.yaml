@@ -18,6 +18,8 @@ jobs:
             pandas: ==2.1.4
           - name: 3.11-latest-latest
             version: "3.11"
+          - name: 3.12-latest-latest
+            version: "3.12"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.version }}

@@ -6,6 +6,17 @@ on: # yamllint disable-line rule:truthy
 jobs:
   build:
     runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build an sdist and a wheel
+        run: NODE_OPTIONS=--openssl-legacy-provider pipx run build
+      - name: Generate and display checksums
+        run: sha256sum dist/* | tee dist_checksums.txt
+      - uses: actions/upload-artifact@v4
+        with: { path: "dist/\ndist_checksums.txt\n" }
+  test:
+    runs-on: [ubuntu-latest]
+    needs: build
     strategy:
       fail-fast: false
       matrix:
@@ -24,6 +35,8 @@ jobs:
       - name: Set up Python ${{ matrix.version }}
         uses: actions/setup-python@v5
         with: { python-version: "${{ matrix.version }}" }
+      - uses: actions/download-artifact@v4
+        with: { name: artifact }
       - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
@@ -35,9 +48,11 @@ jobs:
         if: matrix.pandas
       - run: pip install numpy${{ matrix.numpy }}
         if: matrix.numpy
-      - name: Install dependencies
-        env: { NODE_OPTIONS: --openssl-legacy-provider }
-        run: pip install -e '.[test]'
+        # python3.12 -m venv --upgrade-deps .venv ; . .venv/bin/activate
+      - name: Install wheel with test extras
+        run: >
+          pip install "dist/qgridtrusted-$(python
+          qgrid/_version.py)-py2.py3-none-any.whl[test]"
       - name: Lint with flake8
         run: flake8
         if: matrix.flake8

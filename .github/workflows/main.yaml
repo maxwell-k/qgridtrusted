@@ -12,9 +12,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.11]
+        python-version: ["3.11"]
         include:
-          - python-version: 3.11
+          - python-version: "3.11"
             pandas: 2.1.4
             numpy: 1.26.3
     steps:

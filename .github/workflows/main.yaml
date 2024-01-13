@@ -7,11 +7,10 @@ on: # yamllint disable-line rule:truthy
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: [ubuntu-latest]
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
         python-version: ["3.11"]
         include:
           - python-version: "3.11"

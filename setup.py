@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages, Command
+from setuptools import setup, find_namespace_packages, Command
 from setuptools.command.sdist import sdist
 from setuptools.command.build_py import build_py
 from setuptools.command.egg_info import egg_info
@@ -153,7 +153,7 @@ setup_args = {
     ],
     'install_requires': reqs,
     'extras_require': extras_require(),
-    'packages': find_packages(),
+    'packages': find_namespace_packages(),
     'zip_safe': False,
     'cmdclass': {
         'build_py': js_prerelease(build_py),

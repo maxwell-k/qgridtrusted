@@ -20,6 +20,7 @@ jobs:
             version: "3.11"
           - name: 3.12-latest-latest
             version: "3.12"
+            flake8: true
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.version }}
@@ -39,6 +40,9 @@ jobs:
       - name: Install dependencies
         env: { NODE_OPTIONS: --openssl-legacy-provider }
         run: pip install -e '.[test]'
+      - name: Lint with flake8
+        run: flake8
+        if: matrix.flake8
       - name: On 3.12 install unreleased python-dateutil to avoid a warning
         if: matrix.version == '3.12'
         run: pip install git+https://github.com/dateutil/dateutil.git
@@ -46,9 +50,6 @@ jobs:
         # https://github.com/dateutil/dateutil/pull/1285
         # https://github.com/dateutil/dateutil/issues/1314
         # https://github.com/dateutil/dateutil/pull/1130
-      - name: Lint with flake8
-        run: |
-          flake8
       - name: Run the tests
         run: pytest -Werror
 # vim: set filetype=yaml.action :

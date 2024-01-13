@@ -64,4 +64,16 @@ jobs:
         # https://github.com/dateutil/dateutil/issues/1314
         # https://github.com/dateutil/dateutil/pull/1130
       - run: python qgrid/tests/test_grid.py
+  pypi:
+    if: endswith(github.ref, '/main')
+    runs-on: ubuntu-latest
+    needs: [build, test]
+    environment: pypi
+    permissions: { id-token: write }
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { name: artifact }
+      - name: Publish package distributions to test PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with: { repository-url: "https://test.pypi.org/legacy/" }
 # vim: set filetype=yaml.action :

@@ -67,7 +67,9 @@ jobs:
     if: endswith(github.ref, '/main')
     runs-on: ubuntu-latest
     needs: [build, test]
-    environment: pypi
+    environment:
+      name: pypi
+      url: https://test.pypi.org/project/qgridtrusted/
     permissions: { id-token: write }
     steps:
       - uses: actions/download-artifact@v4

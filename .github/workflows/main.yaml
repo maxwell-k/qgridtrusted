@@ -8,12 +8,9 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v4
-      - name: Build an sdist and a wheel
-        run: pipx run build
-      - name: Check the distributions
-        run: pipx run twine check --strict dist/*
-      - name: Generate and display checksums
-        run: sha256sum dist/* | tee dist_checksums.txt
+      - run: pipx run build
+      - run: pipx run twine check --strict dist/*
+      - run: sha256sum dist/* | tee dist_checksums.txt
       - uses: actions/upload-artifact@v4
         with: { path: "dist/\ndist_checksums.txt\n" }
   test:

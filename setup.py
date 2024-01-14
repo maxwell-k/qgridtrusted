@@ -53,7 +53,6 @@ def js_prerelease(command, strict=False):
 def update_package_data(distribution):
     """update package_data to catch changes during setup"""
     build_py = distribution.get_command_obj('build_py')
-    # distribution.package_data = find_package_data()
     # re-init build_py options which load package_data
     build_py.finalize_options()
 

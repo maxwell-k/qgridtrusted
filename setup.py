@@ -1,4 +1,4 @@
-from setuptools import setup, find_namespace_packages, Command
+from setuptools import setup, Command
 from setuptools.command.sdist import sdist
 from setuptools.command.build_py import build_py
 from setuptools.command.egg_info import egg_info
@@ -130,7 +130,6 @@ setup_args = {
     'data_files': [
         ('share/jupyter/nbextensions/qgrid', data_files),
     ],
-    'packages': find_namespace_packages(),
     'cmdclass': {
         'build_py': js_prerelease(build_py),
         'egg_info': js_prerelease(egg_info),

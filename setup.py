@@ -17,7 +17,7 @@ is_repo = exists(join(here, '.git'))
 
 npm_path = os.pathsep.join([
     join(node_root, 'node_modules', '.bin'),
-                os.environ.get('PATH', os.defpath),
+    os.environ.get('PATH', os.defpath),
 ])
 
 log.basicConfig(level=log.DEBUG)
@@ -141,47 +141,19 @@ def extras_require():
     }
 
 setup_args = {
-    'name': 'qgridtrusted',
     'version': version_ns['__version__'],
-    'description': 'An Interactive Grid for Sorting and Filtering DataFrames in Jupyter Notebook',
-    'include_package_data': True,
     'data_files': [
         ('share/jupyter/nbextensions/qgrid', data_files),
     ],
     'install_requires': reqs,
     'extras_require': extras_require(),
     'packages': find_namespace_packages(),
-    'zip_safe': False,
     'cmdclass': {
         'build_py': js_prerelease(build_py),
         'egg_info': js_prerelease(egg_info),
         'sdist': js_prerelease(sdist, strict=True),
         'jsdeps': NPM,
     },
-
-    'author': 'Quantopian Inc.',
-    'author_email': 'opensource@quantopian.com',
-    'license': 'Apache-2.0',
-    'keywords': [
-        'ipython',
-        'jupyter',
-        'widgets',
-    ],
-    'classifiers': [
-        'Development Status :: 4 - Beta',
-        'Framework :: IPython',
-        'Intended Audience :: Developers',
-        'Intended Audience :: Science/Research',
-        'Topic :: Office/Business :: Financial',
-        'Topic :: Scientific/Engineering :: Information Analysis',
-        'Topic :: Multimedia :: Graphics',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-    ],
 }
 
 setup(**setup_args)

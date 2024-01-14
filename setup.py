@@ -111,10 +111,6 @@ class NPM(Command):
         # update package data in case this created new files
         update_package_data(self.distribution)
 
-version_ns = {}
-with open(join(here, 'qgrid', '_version.py')) as f:
-    exec(f.read(), {}, version_ns)
-
 def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):
@@ -126,7 +122,6 @@ data_files = package_files('qgrid/static')
 
 
 setup_args = {
-    'version': version_ns['__version__'],
     'data_files': [
         ('share/jupyter/nbextensions/qgrid', data_files),
     ],

@@ -164,7 +164,6 @@ setup_args = {
 
     'author': 'Quantopian Inc.',
     'author_email': 'opensource@quantopian.com',
-    'url': 'https://github.com/quantopian/qgrid',
     'license': 'Apache-2.0',
     'keywords': [
         'ipython',

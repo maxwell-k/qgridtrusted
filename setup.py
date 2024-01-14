@@ -24,8 +24,6 @@ log.basicConfig(level=log.DEBUG)
 log.info('setup.py entered')
 log.info('$PATH=%s' % os.environ['PATH'])
 
-LONG_DESCRIPTION = 'An Interactive Grid for Sorting and Filtering DataFrames in Jupyter Notebook'
-
 def js_prerelease(command, strict=False):
     """decorator for building minified js/css prior to another command"""
     class DecoratedCommand(command):
@@ -146,7 +144,6 @@ setup_args = {
     'name': 'qgridtrusted',
     'version': version_ns['__version__'],
     'description': 'An Interactive Grid for Sorting and Filtering DataFrames in Jupyter Notebook',
-    'long_description': LONG_DESCRIPTION,
     'include_package_data': True,
     'data_files': [
         ('share/jupyter/nbextensions/qgrid', data_files),

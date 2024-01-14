@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build an sdist and a wheel
         run: NODE_OPTIONS=--openssl-legacy-provider pipx run build
+      - name: Check the distributions
+        run: pipx run twine check --strict dist/*
       - name: Generate and display checksums
         run: sha256sum dist/* | tee dist_checksums.txt
       - uses: actions/upload-artifact@v4

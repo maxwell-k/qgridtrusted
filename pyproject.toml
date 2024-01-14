@@ -37,7 +37,6 @@ Homepage = "https://github.com/maxwell-k/qgridtrusted/"
 test = ["pytest", "flake8"]
 
 [tool.setuptools]
-zip-safe = false
 packages = ["qgrid", "qgrid.static"]
 
 [tool.setuptools.dynamic]

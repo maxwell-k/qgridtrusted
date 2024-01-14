@@ -1,7 +1,6 @@
 from setuptools import setup, Command
 from setuptools.command.sdist import sdist
 from setuptools.command.build_py import build_py
-from setuptools.command.egg_info import egg_info
 from subprocess import check_call
 import logging as log
 import os
@@ -118,7 +117,6 @@ setup_args = {
     ],
     'cmdclass': {
         'build_py': js_prerelease(build_py),
-        'egg_info': js_prerelease(egg_info),
         'sdist': js_prerelease(sdist, strict=True),
         'jsdeps': NPM,
     },

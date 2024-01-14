@@ -115,13 +115,6 @@ version_ns = {}
 with open(join(here, 'qgrid', '_version.py')) as f:
     exec(f.read(), {}, version_ns)
 
-def read_requirements(basename):
-    reqs_file = join(dirname(abspath(__file__)), basename)
-    with open(reqs_file) as f:
-        return [req.strip() for req in f.readlines()]
-
-reqs = read_requirements('requirements.txt')
-
 def package_files(directory):
     paths = []
     for (path, directories, filenames) in os.walk(directory):
@@ -137,7 +130,6 @@ setup_args = {
     'data_files': [
         ('share/jupyter/nbextensions/qgrid', data_files),
     ],
-    'install_requires': reqs,
     'packages': find_namespace_packages(),
     'cmdclass': {
         'build_py': js_prerelease(build_py),

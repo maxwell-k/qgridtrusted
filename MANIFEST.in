@@ -1,6 +1,5 @@
 include README.rst
 include LICENSE
-include requirements*.txt
 
 recursive-include qgrid/static *.*
 exclude qgrid/tests/test_grid.py

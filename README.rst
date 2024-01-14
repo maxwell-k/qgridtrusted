@@ -1,4 +1,4 @@
-.. image:: https://media.quantopian.com/logos/open_source/qgrid-logo-03.png
+.. image:: https://avatars.githubusercontent.com/u/1393215
     :target: https://qgrid.readthedocs.io
     :width: 190px
     :align: center

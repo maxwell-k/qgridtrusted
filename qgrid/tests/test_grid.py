@@ -1,8 +1,15 @@
-from qgrid import QgridWidget, set_defaults, show_grid, on as qgrid_on
-from traitlets import All
+import json
+import logging
+
 import numpy as np
 import pandas as pd
-import json
+from pytest import main
+from traitlets import All
+
+import qgrid
+from qgrid import QgridWidget, set_defaults, show_grid
+
+logging.basicConfig(level=logging.INFO)
 
 
 def create_df():
@@ -54,7 +61,7 @@ def init_event_history(event_names, widget=None):
     if widget is not None:
         widget.on(event_names, on_change)
     else:
-        qgrid_on(event_names, on_change)
+        qgrid.on(event_names, on_change)
 
     return event_history
 
@@ -764,3 +771,8 @@ def test_edit_cell():
             "source": "api",
         },
     ]
+
+
+if __name__ == "__main__":
+    logging.info(qgrid.__file__)
+    raise SystemExit(main(["-Werror"]))

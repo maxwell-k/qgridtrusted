@@ -1,3 +1,44 @@
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "qgridtrusted"
+dynamic = ["version"]
+readme = "README.md"
+description = "An Interactive Grid for Sorting and Filtering DataFrames in Jupyter Notebook"
+authors = [
+  { name = "Quantopian Inc.", email = "opensource@quantopian.com" },
+]
+license = { file = "LICENSE" }
+dependencies = [
+  "notebook",
+  "pandas",
+  "ipywidgets",
+]
+keywords = ["ipython", "jupyter", "widgets"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Framework :: IPython",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Topic :: Office/Business :: Financial",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: Multimedia :: Graphics",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/maxwell-k/qgridtrusted/"
+
+[project.optional-dependencies]
+test = ["pytest", "flake8"]
+
+[tool.setuptools]
+zip-safe = false
+packages = ["qgrid", "qgrid.static"]
+
+[tool.setuptools.dynamic]
+version = { attr = "qgrid._version.__version__" }

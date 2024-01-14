@@ -66,7 +66,7 @@ jobs:
     needs: [build, test]
     environment:
       name: pypi
-      url: https://test.pypi.org/project/qgridtrusted/
+      url: https://pypi.org/project/qgridtrusted/
     permissions: { id-token: write }
     steps:
       - uses: actions/download-artifact@v4
@@ -74,6 +74,5 @@ jobs:
       - name: Publish package distributions to test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository-url: "https://test.pypi.org/legacy/"
           print-hash: true
 # vim: set filetype=yaml.action :

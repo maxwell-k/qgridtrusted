@@ -132,21 +132,12 @@ def package_files(directory):
 data_files = package_files('qgrid/static')
 
 
-def extras_require():
-    return {
-        "test": [
-            "pytest",
-            "flake8"
-        ],
-    }
-
 setup_args = {
     'version': version_ns['__version__'],
     'data_files': [
         ('share/jupyter/nbextensions/qgrid', data_files),
     ],
     'install_requires': reqs,
-    'extras_require': extras_require(),
     'packages': find_namespace_packages(),
     'cmdclass': {
         'build_py': js_prerelease(build_py),

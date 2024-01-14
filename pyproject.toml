@@ -8,6 +8,7 @@ dynamic = ["version"]
 readme = "README.md"
 description = "An Interactive Grid for Sorting and Filtering DataFrames in Jupyter Notebook"
 authors = [
+  { name = "Keith Maxwell", email = "keith.maxwell@gmail.com" },
   { name = "Quantopian Inc.", email = "opensource@quantopian.com" },
 ]
 license = { file = "LICENSE" }

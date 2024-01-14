@@ -5,7 +5,7 @@ from subprocess import run
 from setuptools import Command
 from setuptools import setup
 from setuptools.command.build_py import build_py
-from setuptools.command.sdist import sdist
+from setuptools.command.egg_info import egg_info
 
 STATIC = Path("qgrid") / "static"
 TARGETS = [STATIC / "extension.js", STATIC / "index.js"]
@@ -48,5 +48,5 @@ class jsdeps(Command):
 data_files: list[tuple[str, list[str]]] = [
     ("share/jupyter/nbextensions/qgrid", list(map(str, STATIC.iterdir()))),
 ]
-cmdclass = dict(build_py=prepare(build_py), sdist=prepare(sdist), jsdeps=jsdeps)
+cmdclass = dict(build_py=prepare(build_py), egg_info=prepare(egg_info), jsdeps=jsdeps)
 setup(data_files=data_files, cmdclass=cmdclass)

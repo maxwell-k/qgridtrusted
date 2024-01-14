@@ -33,3 +33,6 @@ qgrid/static/
 
 # OS X
 .DS_Store
+
+# Vim
+.en.utf-8.add.spl

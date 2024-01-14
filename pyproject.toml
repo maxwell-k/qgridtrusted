@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "qgridtrusted"
 dynamic = ["version"]
 readme = "README.md"
-description = "An Interactive Grid for Sorting and Filtering DataFrames in Jupyter Notebook"
+description = "A fork of qgrid using trusted publishing."
 authors = [
   { name = "Keith Maxwell", email = "keith.maxwell@gmail.com" },
   { name = "Quantopian Inc.", email = "opensource@quantopian.com" },

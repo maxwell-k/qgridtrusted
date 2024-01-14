@@ -20,13 +20,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: 3.11-1.26.3-2.1.4
+          - name: 3.11-requirement
             version: "3.11"
-            numpy: ==1.26.3
-            pandas: ==2.1.4
-          - name: 3.11-latest-latest
+            requirement: requirements.txt
+          - name: 3.11-latest
             version: "3.11"
-          - name: 3.12-latest-latest
+          - name: 3.12-latest
             version: "3.12"
             flake8: true
     steps:
@@ -40,13 +39,11 @@ jobs:
         with:
           path: ~/.cache/pip
           key: >-
-            ${{ runner.os }}-${{ matrix.version }}-${{ matrix.pandas
-            }}-${{ matrix.numpy }}-pip-${{ hashFiles('**/setup.py') }}
+            ${{ runner.os }}-${{ matrix.version }}-${{ matrix.requirement
+            }}-pip-${{ hashFiles('**/setup.py') }}
       - run: python -m pip install --upgrade pip
-      - run: pip install pandas${{ matrix.pandas }}
-        if: matrix.pandas
-      - run: pip install numpy${{ matrix.numpy }}
-        if: matrix.numpy
+      - run: pip install --requirement=${{ matrix.requirement }}
+        if: matrix.requirement
         # python3.12 -m venv --upgrade-deps .venv ; . .venv/bin/activate
       - name: Install wheel with test extras
         run: >

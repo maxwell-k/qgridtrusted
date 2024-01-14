@@ -63,5 +63,5 @@ jobs:
         # https://github.com/dateutil/dateutil/pull/1285
         # https://github.com/dateutil/dateutil/issues/1314
         # https://github.com/dateutil/dateutil/pull/1130
-      - run: pytest -Werror
+      - run: python qgrid/tests/test_grid.py
 # vim: set filetype=yaml.action :

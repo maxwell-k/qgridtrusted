@@ -3,6 +3,7 @@ from setuptools.command.sdist import sdist
 from setuptools.command.build_py import build_py
 from setuptools.command.egg_info import egg_info
 from subprocess import check_call
+import logging as log
 import os
 import sys
 import platform
@@ -19,8 +20,7 @@ npm_path = os.pathsep.join([
                 os.environ.get('PATH', os.defpath),
 ])
 
-from distutils import log
-log.set_verbosity(log.DEBUG)
+log.basicConfig(level=log.DEBUG)
 log.info('setup.py entered')
 log.info('$PATH=%s' % os.environ['PATH'])
 

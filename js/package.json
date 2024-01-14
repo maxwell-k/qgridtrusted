@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "clean": "rimraf dist/",
-    "prepare": "webpack",
+    "prepare": "NODE_OPTIONS=--openssl-legacy-provider webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

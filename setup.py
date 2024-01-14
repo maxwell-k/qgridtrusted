@@ -15,11 +15,6 @@ here = dirname(abspath(__file__))
 node_root = join(here, 'js')
 is_repo = exists(join(here, '.git'))
 
-npm_path = os.pathsep.join([
-    join(node_root, 'node_modules', '.bin'),
-    os.environ.get('PATH', os.defpath),
-])
-
 log.basicConfig(level=log.DEBUG)
 log.info('setup.py entered')
 log.info('$PATH=%s' % os.environ['PATH'])
@@ -91,9 +86,6 @@ class NPM(Command):
         has_npm = self.has_npm()
         if not has_npm:
             log.error("`npm` unavailable.  If you're running this command using sudo, make sure `npm` is available to sudo")
-
-        env = os.environ.copy()
-        env['PATH'] = npm_path
 
         if self.should_run_npm_install():
             log.info("Installing build dependencies with npm.  This may take a while...")

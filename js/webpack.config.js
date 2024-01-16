@@ -84,7 +84,7 @@ module.exports = [
             filename: 'index.js',
             path: path.resolve(__dirname, './dist/'),
             libraryTarget: 'amd',
-            publicPath: 'https://unpkg.com/qgrid@' + version + '/dist/'
+            publicPath: 'https://unpkg.com/qgrid2@' + version + '/dist/'
         },
         devtool: 'source-map',
         module: {

@@ -20,7 +20,7 @@ def main() -> int:
         print(f"{GLOB=} not found")
         return 1
     name, _, version = wheel.name.removesuffix(SUFFIX).partition("-")
-    args = ("pip", "index", "versions", name)
+    args = ("pip", "index", "--pre", "versions", name)
     result = run(args, check=True, capture_output=True, text=True)
     print(f"{version=} {args=} {result.stdout=}")
     return int(version in result.stdout)

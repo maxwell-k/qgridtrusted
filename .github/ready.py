@@ -7,7 +7,8 @@ Wheel filename convention:
 https://packaging.python.org/en/latest/specifications/binary-distribution-format/#file-name-convention
 """
 from pathlib import Path
-from subprocess import run
+
+import urllib3
 
 SUFFIX = "-py3-none-any.whl"
 GLOB = f"dist/*{SUFFIX}"
@@ -20,11 +21,15 @@ def main() -> int:
         print(f"{GLOB=} not found")
         return 1
     name, _, version = wheel.name.removesuffix(SUFFIX).partition("-")
-    args = ("pip", "index", "--pre", "versions", name)
-    result = run(args, check=True, capture_output=True, text=True)
-    print(f"{version=} {args=} {result.stdout=}")
-    return int(f"{version}," in result.stdout)
+    response = urllib3.request("GET", f"https://pypi.org/pypi/{name}/json")
+    result = int(version in (releases := list(response.json()["releases"])))
+    print(f"{version=} {releases=} {result=}")
+    return result
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# /// script
+# dependencies = ["urllib3"]
+# ///

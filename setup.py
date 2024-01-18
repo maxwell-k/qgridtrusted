@@ -38,8 +38,8 @@ class jsdeps(Command):
         except Exception:
             logging.error("`npm` unavailable.")
         else:
-            logging.info("Running `npm install`. This may take a while.")
-            run(["npm", "install"], cwd="js", check=True)
+            logging.info("Running `npm ci`. This may take a while.")
+            run(["npm", "ci"], cwd="js", check=True)
 
         if missing := [i for i in TARGETS if not i.is_file()]:
             raise ValueError("Missing files: %s" % missing)

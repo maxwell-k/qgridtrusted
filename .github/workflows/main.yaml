@@ -18,7 +18,7 @@ jobs:
       - run: sha256sum dist/* | tee dist_checksums.txt
       - uses: actions/upload-artifact@v4
         with: { path: "dist/\ndist_checksums.txt\n" }
-      - run: pipx .github/ready.py
+      - run: pipx run .github/ready.py
         continue-on-error: true
         id: ready
         if: endswith(github.ref, '/main')

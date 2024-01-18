@@ -23,7 +23,7 @@ def main() -> int:
     args = ("pip", "index", "--pre", "versions", name)
     result = run(args, check=True, capture_output=True, text=True)
     print(f"{version=} {args=} {result.stdout=}")
-    return int(version in result.stdout)
+    return int(f"{version}," in result.stdout)
 
 
 if __name__ == "__main__":

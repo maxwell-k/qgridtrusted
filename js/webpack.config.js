@@ -8,14 +8,11 @@ var rules = [
     { test: /\.css$/, use: ['style-loader', 'css-loader']},
     { test: /\.(jpe?g|png|gif|svg)$/i, use: ['file-loader']},
     {
-        test: require.resolve('jquery'),
-        use: [{
-            loader: 'expose-loader',
-            options: 'jQuery'
-        },{
-            loader: 'expose-loader',
-            options: '$'
-        }]
+        test: require.resolve("jquery"),
+        loader: "expose-loader",
+        options: {
+          exposes: ["$", "jQuery"],
+        },
     }
 ];
 

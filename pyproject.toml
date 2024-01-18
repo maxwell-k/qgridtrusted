@@ -42,3 +42,6 @@ packages = ["qgrid", "qgrid.static"]
 
 [tool.setuptools.dynamic]
 version = { attr = "qgrid._version.__version__" }
+
+[tool.pytest.ini_options]
+filterwarnings = ["error"]

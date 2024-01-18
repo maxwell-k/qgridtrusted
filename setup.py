@@ -47,6 +47,7 @@ class jsdeps(Command):
 
 data_files: list[tuple[str, list[str]]] = [
     ("share/jupyter/nbextensions/qgrid", list(map(str, STATIC.iterdir()))),
+    ("etc/jupyter/nbconfig/notebook.d", ["jupyter/nbconfig/notebook.d/qgrid.json"]),
 ]
 cmdclass = dict(build_py=prepare(build_py), egg_info=prepare(egg_info), jsdeps=jsdeps)
 setup(data_files=data_files, cmdclass=cmdclass)

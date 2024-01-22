@@ -1,12 +1,14 @@
-import ipywidgets as widgets
-import pandas as pd
-import numpy as np
-import json
-from pandas.api.types import is_integer_dtype
-
-from types import FunctionType
-from IPython.display import display
+from itertools import chain
 from numbers import Integral
+from types import FunctionType
+from uuid import uuid4
+import json
+import warnings
+
+import ipywidgets as widgets
+import numpy as np
+from IPython.display import display
+from six import string_types
 from traitlets import (
     Unicode,
     Instance,
@@ -20,9 +22,13 @@ from traitlets import (
     observe,
     parse_notifier_name
 )
-from itertools import chain
-from uuid import uuid4
-from six import string_types
+
+# can be removed after Pandas 3.0 release
+with warnings.catch_warnings():
+    message = "(?s).*pyarrow will become a required dependency .*pandas 3.0.*"
+    warnings.filterwarnings("ignore", category=DeprecationWarning, message=message)
+    import pandas as pd
+    from pandas.api.types import is_integer_dtype
 
 
 class _DefaultSettings(object):

@@ -22,7 +22,7 @@ jobs:
       - run: pipx run .github/ready.py
         continue-on-error: true
         id: ready
-        if: endswith(github.ref, '/main')
+        if: "endswith(github.ref, '/main') && !github.event.schedule"
   test:
     runs-on: [ubuntu-latest]
     needs: build

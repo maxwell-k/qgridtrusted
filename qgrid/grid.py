@@ -1,12 +1,15 @@
 from itertools import chain
 from numbers import Integral
 from types import FunctionType
+from typing import cast
 from uuid import uuid4
 import json
 import warnings
 
 import ipywidgets as widgets
 import numpy as np
+from IPython.core.formatters import DisplayFormatter
+from IPython.core.interactiveshell import InteractiveShell
 from IPython.display import display
 from six import string_types
 from traitlets import (
@@ -288,13 +291,13 @@ def enable(dataframe=True, series=True):
     series : bool
         Whether to automatically use qgrid to display Series instances.
     """
-    try:
-        from IPython.core.getipython import get_ipython
-    except ImportError:
-        raise ImportError('This feature requires IPython 1.0+')
 
-    ip = get_ipython()
-    ip_formatter = ip.display_formatter.ipython_display_formatter
+    ip = InteractiveShell.instance()
+    if ip is None:
+        raise ValueError("IPython instance not found")
+
+    display_formatter = cast(DisplayFormatter, ip.display_formatter)
+    ip_formatter = display_formatter.ipython_display_formatter
 
     if dataframe:
         ip_formatter.for_type(pd.DataFrame, _display_as_qgrid)

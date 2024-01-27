@@ -1,8 +1,16 @@
-from qgrid import QgridWidget, set_defaults, show_grid, on as qgrid_on
-from traitlets import All
-import numpy as np
-import pandas as pd
 import json
+import warnings
+
+import numpy as np
+from traitlets import All
+
+# can be removed after Pandas 3.0 release
+with warnings.catch_warnings():
+    message = "(?s).*pyarrow will become a required dependency .*pandas 3.0.*"
+    warnings.filterwarnings("ignore", category=DeprecationWarning, message=message)
+    import pandas as pd
+
+from qgrid import on as qgrid_on, QgridWidget, set_defaults, show_grid
 
 
 def create_df():

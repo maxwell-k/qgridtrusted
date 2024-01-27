@@ -1,15 +1,15 @@
 from ._version import __version__  # noqa F401
 
 from .grid import (
-    enable,
     disable,
-    set_defaults,
-    on,
+    enable,
     off,
-    set_grid_option,
-    show_grid,
+    on,
     QgridWidget,
     QGridWidget,
+    set_defaults,
+    set_grid_option,
+    show_grid,
 )
 
 

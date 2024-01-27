@@ -35,7 +35,7 @@ classifiers = [
 Homepage = "https://github.com/maxwell-k/qgridtrusted/"
 
 [project.optional-dependencies]
-test = ["pytest", "flake8"]
+test = ["pytest", "flake8", "pandas-stubs"]
 
 [tool.setuptools]
 packages = ["qgrid", "qgrid.static"]

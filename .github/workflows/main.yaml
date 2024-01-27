@@ -37,7 +37,7 @@ jobs:
             version: "3.11"
           - name: 3.12-latest
             version: "3.12"
-            flake8: true
+            static-analysis: true
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.version }}
@@ -61,7 +61,10 @@ jobs:
           qgrid/_version.py)-py3-none-any.whl[test]"
       - name: Lint with flake8
         run: flake8
-        if: matrix.flake8
+        if: matrix.static-analysis
+      - name: Check that imports are sorted with usort
+        run: git ls-files '*.py' | xargs usort check
+        if: matrix.static-analysis
       - name: On 3.12 install unreleased python-dateutil to avoid a warning
         if: matrix.version == '3.12'
         run: pip install git+https://github.com/dateutil/dateutil.git

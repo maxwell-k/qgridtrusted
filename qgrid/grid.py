@@ -1,10 +1,10 @@
+import json
+import warnings
 from itertools import chain
 from numbers import Integral
 from types import FunctionType
 from typing import cast
 from uuid import uuid4
-import json
-import warnings
 
 import ipywidgets as widgets
 import numpy as np
@@ -13,17 +13,17 @@ from IPython.core.interactiveshell import InteractiveShell
 from IPython.display import display
 from six import string_types
 from traitlets import (
-    Unicode,
-    Instance,
-    Bool,
-    Integer,
-    Dict,
-    List,
-    Tuple,
-    Any,
     All,
+    Any,
+    Bool,
+    Dict,
+    Instance,
+    Integer,
+    List,
     observe,
-    parse_notifier_name
+    parse_notifier_name,
+    Tuple,
+    Unicode,
 )
 
 # can be removed after Pandas 3.0 release

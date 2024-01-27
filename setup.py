@@ -2,8 +2,7 @@ import logging
 from pathlib import Path
 from subprocess import run
 
-from setuptools import Command
-from setuptools import setup
+from setuptools import Command, setup
 from setuptools.command.build_py import build_py
 from setuptools.command.egg_info import egg_info
 

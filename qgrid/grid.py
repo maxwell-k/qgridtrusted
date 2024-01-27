@@ -812,7 +812,7 @@ class QgridWidget(widgets.DOMWidget):
 
         # insert a column which we'll use later to map edits from
         # a filtered version of this df back to the unfiltered version
-        self._df.insert(0, self._index_col_name, range(0, len(self._df)))
+        self._df.insert(0, self._index_col_name, np.arange(0, len(self._df)))
 
         # keep an unfiltered version to serve as the starting point
         # for filters, and the state we return to when filters are removed
